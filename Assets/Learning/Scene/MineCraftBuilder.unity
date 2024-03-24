@@ -333,6 +333,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1797208135}
   - component: {fileID: 1797208134}
+  - component: {fileID: 1797208136}
   m_Layer: 0
   m_Name: Raycast
   m_TagString: Untagged
@@ -352,10 +353,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c87c9c4e35d59774d804a2492ddf1f93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sphere: {fileID: 5211955243782201098}
   _camera: {fileID: 53606996}
-  _hitPointSphere: {fileID: 8637368063162881930}
-  _pointer: {fileID: 8062332440544919457, guid: d3b33701a468246469464a86a7e2157d, type: 3}
-  _pointers: []
 --- !u!4 &1797208135
 Transform:
   m_ObjectHideFlags: 0
@@ -371,6 +370,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1797208136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797208133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac4cbd5f69182804a9ab75bc8e56df84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pointer: {fileID: 8062332440544919457, guid: d3b33701a468246469464a86a7e2157d, type: 3}
+  _pointers: []
+  _hitPosition: {fileID: 1797208134}
 --- !u!1001 &2020001786
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -624,7 +638,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!23 &5850483875287810510
 MeshRenderer:
@@ -738,6 +752,7 @@ GameObject:
   - component: {fileID: 5282125123919237404}
   - component: {fileID: 2992480893679430235}
   - component: {fileID: 5843644454624464938}
+  - component: {fileID: 7997686005644282210}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -745,6 +760,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7997686005644282210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7997686005644282209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d35b32b161aa20f4b808cf8c47809bb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _waypoints: []
+  _speed: 3
+  _lengthRay: 5
+  _hitPosition: {fileID: 1797208134}
 --- !u!4 &8637368063162881930
 Transform:
   m_ObjectHideFlags: 0
