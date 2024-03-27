@@ -8,7 +8,8 @@ public class RayCastInfo : MonoBehaviour
     private Ray _ray;
     private RaycastHit _hit;
 
-    public event Action<Vector3> PointClicked;
+    public event Action<Vector3> OnPointModifyClicked;
+    public event Action<Vector3> OnPointCliked;
 
     private void Awake()
     {
@@ -28,9 +29,14 @@ public class RayCastInfo : MonoBehaviour
         Debug.DrawLine(_ray.origin, _hit.point, Color.green);
         _sphere.transform.position = _hit.point;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !Input.GetKey(KeyCode.LeftControl))
         {
-            PointClicked?.Invoke(_hit.point);
+            OnPointModifyClicked?.Invoke(_hit.point);
+        }
+
+        if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.LeftControl))
+        {
+            OnPointCliked?.Invoke(_hit.point);
         }
     }
 }

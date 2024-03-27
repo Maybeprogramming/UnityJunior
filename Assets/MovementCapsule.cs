@@ -34,16 +34,27 @@ public class MovementCapsule : MonoBehaviour
     private void SetPointPosition(Vector3 point)
     {
         _waypoints.Add(new Vector3(point.x, transform.position.y, point.z));
+        Debug.Log(point);
+        Debug.Log("Установка позиции кликом ЛКМ");
+    }
+
+    private void SetModifyPointPosition(Vector3 point)
+    {
+        _waypoints.Clear();
+        _waypoints.Add(new Vector3(point.x, transform.position.y, point.z));
+        Debug.Log(point);
+        Debug.Log("Установка позиции с комбинацией CTRL + ЛКМ");
     }
 
     private void OnEnable()
     {
-        _hitPosition.PointClicked += SetPointPosition;
+        _hitPosition.OnPointCliked += SetPointPosition;
+        _hitPosition.OnPointModifyClicked += SetModifyPointPosition;
     }
 
     private void OnDisable()
     {
-        _hitPosition.PointClicked -= SetPointPosition;
+        _hitPosition.OnPointModifyClicked -= SetModifyPointPosition;
+        _hitPosition.OnPointCliked -= SetPointPosition;
     }
-
 }
