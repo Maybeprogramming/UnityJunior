@@ -2,7 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class Timer : MonoBehaviour
+public class Counter : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _timeCounterText;
     [SerializeField] private TextMeshProUGUI _currentCounterStateText;
