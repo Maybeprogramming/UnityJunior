@@ -10,7 +10,6 @@ public class InputMouse : MonoBehaviour
         if (Input.GetMouseButtonDown(0) == true)
         {
             LeftButtonClicked?.Invoke();
-            Debug.Log($"ЛКМ - нажата. Есть ли подписчики на событие LeftButtonClecked: <{LeftButtonClicked != null}>");
         }
     }
 }

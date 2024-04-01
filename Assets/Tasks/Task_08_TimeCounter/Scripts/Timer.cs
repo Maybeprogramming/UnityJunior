@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -6,58 +5,69 @@ using UnityEngine;
 public class Timer : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _timeCounterText;
+    [SerializeField] private TextMeshProUGUI _currentCounterStateText;
     [SerializeField] private InputMouse _inputMouse;
-    [SerializeField] private float _startTimeValue;
+    [SerializeField] private int _startCounterValue;
+    [SerializeField] private float _durationTime;
     [SerializeField] private bool _isTimeCounterRun;
 
-    private IEnumerator _timeCounter;
+    private string _runState = "«‡ÔÛ˘ÂÌ";
+    private string _pauseState = "œ‡ÛÁ‡";
 
     private void Start()
     {
-        _startTimeValue = 0f;
-        _timeCounterText.text = _startTimeValue.ToString();
+        _startCounterValue = 0;
+        _durationTime = 0.5f;
+        _timeCounterText.text = _startCounterValue.ToString();
         _isTimeCounterRun = false;
     }
 
     private void OnEnable()
     {
-        _inputMouse.LeftButtonClicked += OnTimeCounter—alculation;
+        _inputMouse.LeftButtonClicked += OnCounterRun;
     }
 
     private void OnDisable()
     {
-        _inputMouse.LeftButtonClicked -= OnTimeCounter—alculation;
+        _inputMouse.LeftButtonClicked -= OnCounterRun;
     }
 
-    private void OnTimeCounter—alculation()
+    private void OnCounterRun()
     {
         if (_isTimeCounterRun == false)
         {
-            StartCoroutine(TimeCounter(_startTimeValue));
             _isTimeCounterRun = true;
+            StartCoroutine(TimeCounter());
+            _currentCounterStateText.text = _runState;
             Debug.Log("—Ú‡Ú");
         }
         else
         {
-            StopCoroutine(nameof(TimeCounter));
             _isTimeCounterRun = false;
+            StopCoroutine(TimeCounter());
+            _currentCounterStateText.text = _pauseState;
             Debug.Log("œ‡ÛÁ‡");
         }
     }
 
-    private IEnumerator TimeCounter(float previousTime)
+    private IEnumerator TimeCounter()
     {
         float elapsedTime = 0f;
-        float previousTimeValue = float.Parse(_timeCounterText.text);
-        Debug.Log($"—Ú‡Ú ÍÓÛÚËÌ˚: {previousTime}f");
+        int previousValue = int.Parse(_timeCounterText.text);
 
         while (_isTimeCounterRun == true)
         {
-            elapsedTime += Time.deltaTime;
-            previousTimeValue += elapsedTime;
+            if (elapsedTime < _durationTime)
+            {
+                elapsedTime += Time.deltaTime;
+            }
+            else
+            {
+                previousValue++;
+                elapsedTime = 0f;
+            }
 
-            _timeCounterText.text = previousTimeValue.ToString();
-
+            _timeCounterText.text = previousValue.ToString();
             yield return null;
         }
     }
