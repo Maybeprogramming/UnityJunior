@@ -14,7 +14,7 @@ public class Timer : MonoBehaviour
 
     private IEnumerator TimeCounter()
     {
-        Debug.Log("Таймер запустился");
+        Debug.Log("Timer already run!");
 
         float elapsedTime = 0f;
 
