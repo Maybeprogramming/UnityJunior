@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Alarm : MonoBehaviour
 {
     [SerializeField] private float _speed;
@@ -10,7 +11,7 @@ public class Alarm : MonoBehaviour
     private const float MinVolume = 0f;
 
     private AudioSource _audioSource;
-    private IEnumerator _alarmLeveling;
+    private Coroutine _alarmLeveling;
 
     private void Start()
     {
@@ -22,16 +23,20 @@ public class Alarm : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Player at Home!");
-
-        TryChangeAlarmLeveling(MaxVolume);
+        if (other.GetComponent<Thief>() == true)
+        {
+            Debug.Log("Thief at Home!");
+            TryChangeAlarmLeveling(MaxVolume);
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("Player at Outside!");
-
-        TryChangeAlarmLeveling(MinVolume);
+        if (other.GetComponent<Thief>() == true)
+        {
+            Debug.Log("Thief at Outside!");
+            TryChangeAlarmLeveling(MinVolume);
+        }
     }
 
     private void TryChangeAlarmLeveling(float volumeValue)
@@ -41,8 +46,7 @@ public class Alarm : MonoBehaviour
             StopCoroutine(_alarmLeveling);
         }
 
-        _alarmLeveling = AlarmLeveling(volumeValue);
-        StartCoroutine(_alarmLeveling);
+        _alarmLeveling = StartCoroutine(AlarmLeveling(volumeValue));
     }
 
     private IEnumerator AlarmLeveling(float targetVolume)
