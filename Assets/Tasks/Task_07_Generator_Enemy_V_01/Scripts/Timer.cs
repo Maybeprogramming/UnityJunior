@@ -5,14 +5,15 @@ using UnityEngine;
 public class Timer : MonoBehaviour
 {
     [SerializeField] private float _delayInSeconds;
-    [SerializeField] public event Action Tick;
+    
+    public event Action Triggered;
 
     private void Awake()
     {
-        StartCoroutine(TimeCounter());
+        StartCoroutine(Countdown());
     }
 
-    private IEnumerator TimeCounter()
+    private IEnumerator Countdown()
     {
         Debug.Log("Timer already run!");
 
@@ -26,7 +27,7 @@ public class Timer : MonoBehaviour
             }
             else
             {
-                Tick?.Invoke();
+                Triggered?.Invoke();
                 elapsedTime = 0f;
             }
 

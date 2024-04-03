@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMover : MonoBehaviour
+public class EnemiesMover : MonoBehaviour
 {
     [SerializeField] private Spawner _spawner;
     [SerializeField] private List<GameObject> _enemies;
@@ -10,6 +10,11 @@ public class EnemyMover : MonoBehaviour
     private Vector3 _target;
 
     private void Start()
+    {
+        UpdateTarget();
+    }
+
+    private void UpdateTarget()
     {
         _target = _spawner.Target;
     }
@@ -31,6 +36,7 @@ public class EnemyMover : MonoBehaviour
 
     private void Update()
     {
+        UpdateTarget();
         Move();
         RemoveFinishingEnemies();
     }
@@ -46,7 +52,7 @@ public class EnemyMover : MonoBehaviour
         {
             if (enemy.transform.position != _target)
             {
-                enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, _spawner.Target, Time.deltaTime * _speed);
+                enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, _target, Time.deltaTime * _speed);
                 enemy.transform.LookAt(_target);
             }
         }

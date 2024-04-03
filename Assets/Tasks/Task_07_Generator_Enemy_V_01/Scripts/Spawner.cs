@@ -13,7 +13,7 @@ public class Spawner : MonoBehaviour
 
     public Vector3 Target => _target.position;
 
-    private void Spawn()
+    private void OnSpawn()
     {
         int pointIndex = new System.Random().Next(0, _spawnpoints.Count);
         GameObject newEnemy = Instantiate(_enemy, _spawnpoints[pointIndex].position, Quaternion.identity);
@@ -22,11 +22,11 @@ public class Spawner : MonoBehaviour
 
     private void OnEnable()
     {
-        _timer.Tick += Spawn;
+        _timer.Triggered += OnSpawn;
     }
 
     private void OnDisable()
     {
-        _timer.Tick -= Spawn;
+        _timer.Triggered -= OnSpawn;
     }
 }
