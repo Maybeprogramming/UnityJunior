@@ -579,6 +579,7 @@ GameObject:
   - component: {fileID: 2054022205}
   - component: {fileID: 2054022204}
   - component: {fileID: 2054022207}
+  - component: {fileID: 2054022208}
   - component: {fileID: 2054022206}
   m_Layer: 0
   m_Name: Alarm
@@ -733,6 +734,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 0.5
   _audioClip: {fileID: 8300000, guid: ad90b47bd58ff924ab908da279eb43e0, type: 3}
+  _detector: {fileID: 2054022208}
+--- !u!114 &2054022208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054022203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7437791821ac0842b9bbf6689a16731, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2054952212
 GameObject:
   m_ObjectHideFlags: 0
