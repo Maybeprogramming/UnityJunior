@@ -29,6 +29,7 @@ public class Timer : MonoBehaviour
             {
                 Triggered?.Invoke();
                 elapsedTime = 0f;
+                Debug.Log("Timer is triggered");
             }
 
             yield return null;
