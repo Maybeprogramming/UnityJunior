@@ -35,8 +35,7 @@ public class Shooter : MonoBehaviour
 
             if (newBullet.TryGetComponent<Rigidbody>(out newBulletRigidbody) == false)
             {
-                newBullet.AddComponent<Rigidbody>();
-                newBulletRigidbody = newBullet.GetComponent<Rigidbody>();
+                newBulletRigidbody = newBullet.AddComponent<Rigidbody>();
             }
 
             newBulletRigidbody.transform.up = direction;
