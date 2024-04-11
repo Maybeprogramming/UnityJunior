@@ -483,9 +483,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 122463d5f002b2f4dbe0fa25242941fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1
+  _speed: 3
   _target: {fileID: 145275965}
-  _delayShotTime: 2
+  _delayShotTime: 1
   _prefabBullet: {fileID: 5873665775895133090, guid: 7f1a0ad3e70ec7c4d9ee83eb08bd19e7, type: 3}
 --- !u!65 &771616858
 BoxCollider:
@@ -762,7 +762,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 2
-  _player: {fileID: 1618661228}
   _waypoints: {fileID: 85876786}
 --- !u!65 &1618661225
 BoxCollider:
