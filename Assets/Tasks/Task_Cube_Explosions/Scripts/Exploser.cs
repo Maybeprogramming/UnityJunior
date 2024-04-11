@@ -1,7 +1,6 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(Exploser))]
 public class Exploser : MonoBehaviour
 {
     [SerializeField] private Transform _prefabCube;
