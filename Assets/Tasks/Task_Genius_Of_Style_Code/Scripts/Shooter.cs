@@ -39,6 +39,7 @@ public class Shooter : MonoBehaviour
                 newBulletRigidbody = newBullet.GetComponent<Rigidbody>();
             }
 
+            newBulletRigidbody.transform.up = direction;
             newBulletRigidbody.velocity = direction * _speed;
 
             yield return _delayShot;
