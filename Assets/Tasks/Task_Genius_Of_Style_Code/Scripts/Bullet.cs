@@ -8,6 +8,6 @@ public class Bullet : MonoBehaviour
     private void Awake()
     {
         ID++;
-        gameObject.name = ID.ToString();
+        gameObject.name = $"Bullet {ID}";
     }
 }
