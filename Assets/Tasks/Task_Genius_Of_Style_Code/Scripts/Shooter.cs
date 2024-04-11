@@ -28,7 +28,8 @@ public class Shooter : MonoBehaviour
         {
             Vector3 direction = (_target.position - transform.position).normalized;
             Bullet newBullet = Instantiate(_prefabBullet, transform.position + direction, Quaternion.identity);
-            newBullet.Init(_speed, direction);
+            newBullet.GetComponent<Rigidbody>().transform.up = direction;
+            newBullet.GetComponent<Rigidbody>().velocity = direction * _speed;
 
             yield return new WaitForSeconds(_delayShotTime);
         }
