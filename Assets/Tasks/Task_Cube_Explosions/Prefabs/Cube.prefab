@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3600505798896504134}
   - component: {fileID: 7185598869451189781}
   - component: {fileID: 7020894954269958779}
-  - component: {fileID: 6583077291950863473}
+  - component: {fileID: 58464682895441611}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4544729774282830142
 MeshFilter:
@@ -120,9 +120,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prefabCube: {fileID: 3924208064924174135}
-  _explosionForce: 800
-  _explosionRadius: 5
---- !u!54 &6583077291950863473
+  _explosionForce: 600
+  _explosionRadius: 6
+--- !u!54 &58464682895441611
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

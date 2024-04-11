@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Exploser))]
 public class Exploser : MonoBehaviour
 {
     [SerializeField] private Transform _prefabCube;
@@ -15,30 +14,46 @@ public class Exploser : MonoBehaviour
 
     private static int ID = 0;
 
+    private int _maxChance = 100;
+    private float _chanceMultiplier = 0.5f;
+    private float _currentChance;
+    private System.Random _random = new System.Random();
+
+    public void Init(float chance)
+    {
+        _currentChance = chance;
+    }
+
     private void Start()
     {
         gameObject.name = GetName();
+        _currentChance = _maxChance;
     }
 
     private void OnMouseUpAsButton()
     {
         Destroy(gameObject);
         Explose();
-        CreateNewCubes();
+        TryCreateNewCubes();
     }
 
-    private void CreateNewCubes()
+    private void TryCreateNewCubes()
     {
-        int randomNumber = new System.Random().Next(MinCubeCount, MaxCubeCount + 1);
+        int chance = _random.Next(_maxChance + 1);
 
-        Debug.Log(randomNumber);
-
-        for (int i = 0; i < randomNumber; i++)
+        if (chance <= _currentChance)
         {
-            Transform newCube = Instantiate(_prefabCube, transform.position + Vector3.up, transform.rotation);
-            newCube.localScale = newCube.localScale * ScaleMultiplier;
-            newCube.name = GetName();
-        }
+            _currentChance *= _chanceMultiplier;
+            int randomCount = _random.Next(MinCubeCount, MaxCubeCount + 1);
+
+            for (int i = 0; i < randomCount; i++)
+            {
+                Transform newCube = Instantiate(_prefabCube, transform.position + Vector3.up, transform.rotation);
+                newCube.localScale = newCube.localScale * ScaleMultiplier;
+                newCube.name = GetName();
+                newCube.GetComponent<Exploser>().Init(_currentChance);
+            }
+        }             
     }
 
     private void Explose()
