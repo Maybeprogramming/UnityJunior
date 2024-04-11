@@ -28,7 +28,7 @@ public class Mover : MonoBehaviour
     {
         if (transform.position == _waypoints[_currentWaypointIndex].position)
         {
-            _currentWaypointIndex = (_currentWaypointIndex + 1) % _waypoints.Length;
+            _currentWaypointIndex = ++_currentWaypointIndex % _waypoints.Length;
         }
 
         Transform nextWaypoint = _waypoints[_currentWaypointIndex];
