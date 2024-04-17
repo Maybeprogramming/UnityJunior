@@ -1,36 +1,31 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(Explosable))]
+[RequireComponent(typeof(CubesCreator))]
 public class Exploser : MonoBehaviour
 {
     [SerializeField] private float _explosionForce;
     [SerializeField] private float _explosionRadius;
     [SerializeField] private ParticleSystem _particleEffect;
 
-    private Explosable _cube;
+    private CubesCreator _cubesCreator;
 
     private void Awake()
     {
-        _cube = GetComponent<Explosable>();
-        _cube.OnMouseDowned += Explose;
+        _cubesCreator = GetComponent<CubesCreator>();
+        _cubesCreator.CubesCreated += OnExplosed;
     }
 
     private void OnDisable()
     {
-        _cube.OnMouseDowned -= Explose;
+        _cubesCreator.CubesCreated -= OnExplosed;
     }
 
-    private void Explose()
+    private void OnExplosed(Rigidbody[] cubesRigidbodies)
     {
-        Collider[] hits = Physics.OverlapSphere(transform.position, _explosionRadius);
-
-        foreach (Collider hit in hits)
+        foreach (Rigidbody cubeRigidbody in cubesRigidbodies)
         {
-            if (hit.attachedRigidbody != null)
-            {
-                hit.GetComponent<Rigidbody>().AddExplosionForce(_explosionForce, transform.position, _explosionRadius);
-            }
+            cubeRigidbody.AddExplosionForce(_explosionForce, transform.position, _explosionRadius);
         }
 
         PlayExploseEffect();

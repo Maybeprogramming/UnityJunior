@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Explosable))]
@@ -7,7 +8,7 @@ public class CubesCreator : MonoBehaviour
     private const int MaxCubeCount = 6;
     private const float ScaleMultiplier = 0.5f;
 
-    private static int ID = 0;
+    private static int s_id = 0;
 
     [SerializeField] private Explosable _prefabCube;
 
@@ -15,7 +16,9 @@ public class CubesCreator : MonoBehaviour
     private int _maxChance = 100;
     private float _chanceMultiplier = 0.5f;
     private float _currentChance = 100;
-    private System.Random _random = new System.Random();
+    private static System.Random s_random = new System.Random();
+
+    public event Action<Rigidbody[]> CubesCreated;
 
     public void Init(float chance)
     {
@@ -25,7 +28,7 @@ public class CubesCreator : MonoBehaviour
     private void Awake()
     {
         _cube = GetComponent<Explosable>();
-        _cube.OnMouseDowned += TryCreateNewCubes;
+        _cube.MouseDowned += OnTryCreateNewCubes;
     }
 
     private void Start()
@@ -35,31 +38,40 @@ public class CubesCreator : MonoBehaviour
 
     private void OnDisable()
     {
-        _cube.OnMouseDowned -= TryCreateNewCubes;
+        _cube.MouseDowned -= OnTryCreateNewCubes;
     }
 
-    private void TryCreateNewCubes()
+    private void OnTryCreateNewCubes()
     {
-        int chance = _random.Next(_maxChance + 1);
+        int chance = s_random.Next(++_maxChance);
 
         if (chance <= _currentChance)
         {
             _currentChance *= _chanceMultiplier;
-            int randomCount = _random.Next(MinCubeCount, MaxCubeCount + 1);
+            int randomCount = s_random.Next(MinCubeCount, MaxCubeCount + 1);
+            Rigidbody[] cubesRigidbody = new Rigidbody[randomCount];
 
             for (int i = 0; i < randomCount; i++)
             {
                 Explosable newCube = Instantiate(_prefabCube, transform.position + Vector3.up, transform.rotation);
                 newCube.name = GetName();
-                newCube.transform.localScale = newCube.transform.localScale * ScaleMultiplier;
+                newCube.transform.localScale *= ScaleMultiplier;
                 newCube.GetComponent<CubesCreator>().Init(_currentChance);
+
+                cubesRigidbody[i] = newCube.GetComponent<Rigidbody>();
             }
+
+            CubesCreated?.Invoke(cubesRigidbody);
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 
     private static string GetName()
     {
-        ID++;
-        return $"Cube {ID}";
+        s_id++;
+        return $"Cube {s_id}";
     }
 }

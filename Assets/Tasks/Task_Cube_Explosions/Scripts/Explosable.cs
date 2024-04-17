@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class Explosable : MonoBehaviour 
 {
-    public event Action OnMouseDowned;
+    public event Action MouseDowned;
 
     private void OnMouseDown()
     {
-        OnMouseDowned?.Invoke();
+        MouseDowned?.Invoke();
     }
 }
