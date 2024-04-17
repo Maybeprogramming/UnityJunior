@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _minColorAmount: 0
-  _maxColorAmount: 120
+  _maxColorAmount: 150
 --- !u!114 &7783016088801573181
 MonoBehaviour:
   m_ObjectHideFlags: 0
