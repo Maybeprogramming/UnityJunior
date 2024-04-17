@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7185598869451189781}
   - component: {fileID: 8056699262005478396}
   - component: {fileID: 7020894954269958779}
+  - component: {fileID: 583512783491673997}
   - component: {fileID: 7783016088801573181}
   - component: {fileID: 58464682895441611}
   m_Layer: 0
@@ -36,7 +37,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4544729774282830142
 MeshFilter:
@@ -136,6 +137,20 @@ MonoBehaviour:
   _explosionForce: 600
   _explosionRadius: 6
   _particleEffect: {fileID: 19894158, guid: d141463ecdf778c47b2fbdf2eea5a887, type: 3}
+--- !u!114 &583512783491673997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9152671432795326189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 997de177d717e6b4296570521720df25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minColorAmount: 0
+  _maxColorAmount: 120
 --- !u!114 &7783016088801573181
 MonoBehaviour:
   m_ObjectHideFlags: 0

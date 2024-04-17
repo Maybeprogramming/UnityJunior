@@ -4,12 +4,12 @@ using UnityEngine;
 public class CubesCreator : MonoBehaviour
 {
     private const int MinCubeCount = 2;
-    private const int MaxCubeCount = 4;
+    private const int MaxCubeCount = 6;
     private const float ScaleMultiplier = 0.5f;
 
-    [SerializeField] private Explosable _prefabCube;
-
     private static int ID = 0;
+
+    [SerializeField] private Explosable _prefabCube;
 
     private Explosable _cube;
     private int _maxChance = 100;
