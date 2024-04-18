@@ -5,18 +5,17 @@ public class LifeTimeSetter : MonoBehaviour
 {
     [SerializeField] private float duration;
 
-    private Coroutine _lifeTimeToDestroy;
+    private Coroutine _timerToDestroy;
 
     void Start()
     {
-        _lifeTimeToDestroy = StartCoroutine(DestroerByTime());        
+        _timerToDestroy = StartCoroutine(DestroerByTime());
     }
 
-    //private void OnDestroy()
-    //{
-    //    StopCoroutine(_lifeTimeToDestroy);
-    //    Debug.Log("Ёффект удалЄн со сцены");
-    //}
+    private void OnDestroy()
+    {
+        StopCoroutine(_timerToDestroy);
+    }
 
     private IEnumerator DestroerByTime()
     {

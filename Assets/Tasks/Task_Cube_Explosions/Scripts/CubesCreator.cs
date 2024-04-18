@@ -9,7 +9,6 @@ public class CubesCreator : MonoBehaviour
     private const float ScaleMultiplier = 0.5f;
 
     private static int s_id = 0;
-    private static System.Random s_random = new System.Random();
 
     [SerializeField] private Explosable _prefabCube;
 
@@ -43,12 +42,12 @@ public class CubesCreator : MonoBehaviour
 
     private void OnTryCreateNewCubes()
     {
-        int chance = s_random.Next(++_maxChance);
+        int chance = UnityEngine.Random.Range(0, ++_maxChance);
 
         if (chance <= _currentChance)
         {
             _currentChance *= _chanceMultiplier;
-            int randomCount = s_random.Next(MinCubeCount, MaxCubeCount + 1);
+            int randomCount = UnityEngine.Random.Range(MinCubeCount, MaxCubeCount + 1);
             Rigidbody[] cubesRigidbody = new Rigidbody[randomCount];
 
             for (int i = 0; i < randomCount; i++)
