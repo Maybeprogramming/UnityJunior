@@ -18,6 +18,7 @@ public class CubesCreator : MonoBehaviour
     private float _currentChance = 100;
 
     public event Action<Rigidbody[]> CubesCreated;
+    public event Action CubesNotCreated;
 
     public void Init(float chance)
     {
@@ -53,6 +54,7 @@ public class CubesCreator : MonoBehaviour
             for (int i = 0; i < randomCount; i++)
             {
                 Explosable newCube = Instantiate(_prefabCube, transform.position + Vector3.up, transform.rotation);
+                newCube.EnhanceParameters();
                 newCube.name = GetName();
                 newCube.transform.localScale *= ScaleMultiplier;
                 newCube.GetComponent<CubesCreator>().Init(_currentChance);
@@ -64,7 +66,7 @@ public class CubesCreator : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            CubesNotCreated?.Invoke();
         }
     }
 
