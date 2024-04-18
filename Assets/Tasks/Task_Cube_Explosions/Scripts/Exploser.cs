@@ -43,12 +43,13 @@ public class Exploser : MonoBehaviour
         List<Rigidbody> explodableCubes = GetExplodableCubes();
         float distanceToExplosableCube;
         float forceMultiplier;
+        float maxMultiplierValue = 1f;
         Vector3 forceDirection;
 
         foreach (Rigidbody cubeRigidbody in explodableCubes)
         {
             distanceToExplosableCube = (cubeRigidbody.transform.position - transform.position).magnitude;
-            forceMultiplier = (distanceToExplosableCube / _cubeExplosable.Radius) * _cubeExplosable.Force;
+            forceMultiplier = (maxMultiplierValue - (distanceToExplosableCube / _cubeExplosable.Radius)) * _cubeExplosable.Force;
             forceDirection = (cubeRigidbody.transform.position - transform.position).normalized;
 
             cubeRigidbody.AddForce(forceDirection * forceMultiplier, ForceMode.Force);
