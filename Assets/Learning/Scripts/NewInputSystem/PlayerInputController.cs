@@ -54,7 +54,7 @@ public class PlayerInputController : MonoBehaviour
         var vector2direction = _playerInput.Player.Move.ReadValue<Vector2>();
         _moveDirection = new Vector3(vector2direction.x, 0f, vector2direction.y);
 
-        transform.position += _moveDirection * _playerSpeed * Time.deltaTime;
+        transform.Translate(_moveDirection * Time.deltaTime);
     }
 
     private void OnMove(InputAction.CallbackContext context)
