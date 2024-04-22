@@ -14,7 +14,8 @@ public class LifeTimeSetter : MonoBehaviour
 
     private void OnDestroy()
     {
-        StopCoroutine(_timerToDestroy);
+        if(_timerToDestroy != null)  
+            StopCoroutine(_timerToDestroy);
     }
 
     private IEnumerator DestroerByTime()
