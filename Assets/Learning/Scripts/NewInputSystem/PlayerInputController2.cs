@@ -1,35 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(PlayerInput))]
 public class PlayerInputController2 : MonoBehaviour
 {
-    [SerializeField] private float _moveSpeed;
-    [SerializeField] private float _jumpPower;
-    [SerializeField] private AnimationCurve _jumpCurve;
-    [SerializeField] private Rigidbody _rigidbody;
+    private PlayerInput _playerInput;
 
     private void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody>();
+        _playerInput = new PlayerInput();
+
+        _playerInput.Player.Shoot.performed += OnShoot;
+    }
+    private void OnEnable()
+    {
+        _playerInput.Enable();
     }
 
-    void Update()
+    private void OnDisable()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Jump();
-        }
-        else
-        {
-            _rigidbody.velocity = Vector3.zero;
-        }
+        _playerInput.Disable();
     }
 
-    void Jump()
+    public void OnShoot(InputAction.CallbackContext context)
     {
-        _rigidbody.velocity = Vector3.up * _jumpPower * _jumpCurve.Evaluate(Time.time);
+        //Логика выстрела
+        Debug.Log("Shoot");
     }
 }

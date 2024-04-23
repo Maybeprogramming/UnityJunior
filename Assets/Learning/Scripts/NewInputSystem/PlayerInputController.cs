@@ -22,7 +22,7 @@ public class PlayerInputController : MonoBehaviour
         _playerInput = new PlayerInput();
         _rigidbody = GetComponent<Rigidbody>();
         _playerInput.Player.Shoot.performed += OnShoot;
-        _playerInput.Player.Jump.performed += Jump;
+        _playerInput.Player.Jump.performed += Jump; 
         //_playerInput.Player.Look.performed += Look;
     }
 
