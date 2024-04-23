@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,7 +12,21 @@ public class PlayerInputController2 : MonoBehaviour
         _playerInput = new PlayerInput();
 
         _playerInput.Player.Shoot.performed += OnShoot;
+        _playerInput.Player.Move.performed += OnMove;
     }
+
+    private void Update()
+    {
+        Debug.Log(_playerInput.Player.Move.ReadValue<Vector2>().x);
+    }
+
+    private void OnMove(InputAction.CallbackContext context)
+    {
+        float value = context.ReadValue<Vector2>().x;
+
+        Debug.Log(value);
+    }
+
     private void OnEnable()
     {
         _playerInput.Enable();
