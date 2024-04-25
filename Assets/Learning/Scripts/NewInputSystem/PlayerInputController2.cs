@@ -17,14 +17,14 @@ public class PlayerInputController2 : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(_playerInput.Player.Move.ReadValue<Vector2>().x);
+
     }
 
     private void OnMove(InputAction.CallbackContext context)
     {
-        float value = context.ReadValue<Vector2>().x;
+        Vector2 moveDirection = context.action.ReadValue<Vector2>();
 
-        Debug.Log(value);
+        Debug.Log(moveDirection);
     }
 
     private void OnEnable()
