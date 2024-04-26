@@ -87,7 +87,7 @@ public class Player : MonoBehaviour
         float scaledJumpSpeed = _jumpSpeed * Time.deltaTime;
         Vector3 offset = Vector3.up * scaledJumpSpeed;
 
-        transform.Translate(offset);
+        transform.position += offset;
     }
 
     //private void OnLook(InputAction.CallbackContext context)
