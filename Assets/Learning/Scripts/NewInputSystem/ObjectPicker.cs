@@ -22,6 +22,9 @@ public class ObjectPicker : MonoBehaviour
 
     private void ThrowObject(Vector3 force)
     {
+        if (_currentObject == null)
+            return;
+
         _currentObject.Throw(force);
         _currentObject = null;
     }

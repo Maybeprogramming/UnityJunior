@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,12 +8,14 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _lookSpeed;
+    [SerializeField] private float _jumpSpeed;
     [SerializeField] private ObjectPicker _objectPicker;
 
     private PlayerInput _playerInput;
 
     private Vector2 _lookDirection;
     private Vector2 _moveDirection;
+    private bool _isJump;
 
     private void Awake()
     {
@@ -33,9 +36,11 @@ public class Player : MonoBehaviour
     {
         _lookDirection = _playerInput.Player.Look.ReadValue<Vector2>();
         _moveDirection = _playerInput.Player.Move.ReadValue<Vector2>();
+        _isJump = _playerInput.Player.Jump.IsPressed();
 
         Move();
         Look();
+        Jump();
     }
 
     private void OnEnable()
@@ -73,7 +78,18 @@ public class Player : MonoBehaviour
 
         transform.Translate(offset);
     }
-    
+
+    private void Jump()
+    {
+        if (_isJump == false)
+            return;
+
+        float scaledJumpSpeed = _jumpSpeed * Time.deltaTime;
+        Vector3 offset = Vector3.up * scaledJumpSpeed;
+
+        transform.Translate(offset);
+    }
+
     //private void OnLook(InputAction.CallbackContext context)
     //{
     //    _lookDirection = context.action.ReadValue<Vector2>();
