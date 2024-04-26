@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
         float scaledLookSpeed = _lookSpeed * Time.deltaTime;
         Vector3 offset = new Vector3(-_lookDirection.y, _lookDirection.x, 0f) * scaledLookSpeed;
 
-        transform.Rotate(offset);
+        transform.eulerAngles += offset;
     }
 
     private void Move()
