@@ -44,6 +44,6 @@ public class LifeTimeCounter : MonoBehaviour
             yield return null;
         }
 
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

@@ -9,10 +9,19 @@ public class EntitySpawner : MonoBehaviour
     [SerializeField] private float _startPositionZ;
     [SerializeField] private float _endPositionZ;
     [SerializeField] private float _timeDelayMiliseconds;
+    [SerializeField] private int _poolSize;
+    [SerializeField] private bool AutoExpandPool;
 
+    private EntitiesPool<ColorableEntity> _pool;
     private int _timeDivider = 1000;
-    private Vector3 _spawnPosition;
+    private Vector3 _randomSpawnPosition;
     private WaitForSeconds _delayTimeOnNewSpawn;
+
+    private void Awake()
+    {
+        _pool = new(_entityPrefab, _poolSize, gameObject.transform);
+        _pool.SetAutoExpand(AutoExpandPool);
+    }
 
     private void Start()
     {
@@ -35,8 +44,9 @@ public class EntitySpawner : MonoBehaviour
 
         while (isSpawnerWork == true)
         {
-            _spawnPosition = GetRandomPosition();
-            Instantiate(_entityPrefab, _spawnPosition, _entityPrefab.transform.rotation);
+            _randomSpawnPosition = GetRandomPosition();
+            ColorableEntity cube = _pool.GetFreeElement();
+            cube.transform.position = _randomSpawnPosition;
 
             yield return _delayTimeOnNewSpawn;
         }

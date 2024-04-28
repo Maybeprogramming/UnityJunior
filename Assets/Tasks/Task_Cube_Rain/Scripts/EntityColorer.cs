@@ -12,10 +12,6 @@ public class EntityColorer : MonoBehaviour
     private void Awake()
     {
         _colisionDetector = GetComponent<CollisionDetector>();
-    }
-
-    private void Start()
-    {
         _renderer = GetComponent<MeshRenderer>();
         _renderer.material.color = _defaultColor;
         _canColorIt = true;
@@ -28,7 +24,14 @@ public class EntityColorer : MonoBehaviour
 
     private void OnDisable()
     {
+        ResetByDefault();
         _colisionDetector.collisionDetected -= OnPaint;
+    }
+
+    private void ResetByDefault()
+    {
+        _renderer.material.color = _defaultColor;
+        _canColorIt = true;
     }
 
     private void OnPaint()
