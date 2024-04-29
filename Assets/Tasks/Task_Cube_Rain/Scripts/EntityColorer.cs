@@ -19,13 +19,13 @@ public class EntityColorer : MonoBehaviour
 
     private void OnEnable()
     {
-        _colisionDetector.collisionDetected += OnPaint;
+        _colisionDetector.CollisionDetected += OnPaint;
     }
 
     private void OnDisable()
     {
         ResetByDefault();
-        _colisionDetector.collisionDetected -= OnPaint;
+        _colisionDetector.CollisionDetected -= OnPaint;
     }
 
     private void ResetByDefault()

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CollisionDetector : MonoBehaviour
 {
-    public event Action collisionDetected;
+    public event Action CollisionDetected;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -15,6 +15,6 @@ public class CollisionDetector : MonoBehaviour
 
     private void Detected()
     {
-        collisionDetected?.Invoke();
+        CollisionDetected?.Invoke();
     }
 }

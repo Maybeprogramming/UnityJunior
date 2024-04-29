@@ -21,12 +21,12 @@ public class LifeTimeCounter : MonoBehaviour
     }
     private void OnEnable()
     {
-        _colisionDetector.collisionDetected += OnStartCountdown;
+        _colisionDetector.CollisionDetected += OnStartCountdown;
     }
 
     private void OnDisable()
     {
-        _colisionDetector.collisionDetected -= OnStartCountdown;
+        _colisionDetector.CollisionDetected -= OnStartCountdown;
     }
 
     private void OnStartCountdown()
