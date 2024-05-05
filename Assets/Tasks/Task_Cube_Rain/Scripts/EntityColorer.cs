@@ -4,10 +4,10 @@ using UnityEngine;
 [RequireComponent(typeof(CollisionDetector))]
 public class EntityColorer : MonoBehaviour
 {
+    [SerializeField] private Color _defaultColor;
     private MeshRenderer _renderer;
     private CollisionDetector _colisionDetector;
     private bool _canColorIt;
-    private Color _defaultColor = Color.red;
 
     private void Awake()
     {
